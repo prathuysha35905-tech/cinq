@@ -1,0 +1,32 @@
+# Backup archives
+*.zip
+
+# Python virtual environments
+backend/venv/
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Node.js dependencies and build files
+frontend/node_modules/
+node_modules/
+frontend/.next/
+.next/
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
