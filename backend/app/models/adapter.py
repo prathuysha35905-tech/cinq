@@ -7,8 +7,8 @@ class ModelAdapter:
 
     def __init__(self):
         self.client = OpenAI(
-            base_url=settings.LMSTUDIO_BASE_URL,
-            api_key=settings.LMSTUDIO_API_KEY,
+            base_url=settings.AI_BASE_URL,
+            api_key=settings.AI_API_KEY,
         )
 
     def generate(
@@ -17,6 +17,12 @@ class ModelAdapter:
         system_prompt: str,
         user_message: str,
     ) -> str:
+
+        if not model:
+            raise RuntimeError(
+                "No AI model has been configured. "
+                "Set ROUTER_MODEL and AGENT_MODEL in your .env file."
+            )
 
         response = self.client.chat.completions.create(
             model=model,
@@ -35,14 +41,14 @@ class ModelAdapter:
 
         if not response.choices:
             raise RuntimeError(
-                "LM Studio returned no choices."
+                "AI returned no choices."
             )
 
         content = response.choices[0].message.content
 
         if not content:
             raise RuntimeError(
-                "LM Studio returned an empty response."
+                "AI returned an empty response."
             )
 
         return content.strip()
