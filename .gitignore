@@ -1,5 +1,6 @@
 # Backup archives
 *.zip
+*.mp4
 
 # Python virtual environments
 backend/venv/
